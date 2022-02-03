@@ -20,7 +20,7 @@ public class MainMenu {
 		String password = star.nextLine();
 		CustomerCheckImp customerLoginObj = new CustomerCheckImp();
 		customerLoginObj.CustomerLogin(username, password);
-	*/	
+		*/
 		List<Products> productOfCart = new ArrayList<Products>();
 		System.out.println("Welcome to Capg Store");
 		while(true) {
@@ -28,6 +28,7 @@ public class MainMenu {
 			System.out.println("1.Display products list");
 			System.out.println("2.Display by products category");
 			System.out.println("3.Add products by store admin");
+			System.out.println("10.Delete products by name");
 			System.out.println("4.Add to cart ");
 			System.out.println("5.Get products details by product Id");
 			System.out.println("6.Get products details by product Category");
@@ -121,6 +122,13 @@ public class MainMenu {
 			case 9:
 				System.out.println("thank you for shopping\n");
 				System.exit(0);
+			case 10:
+				System.out.println("Enter the Product Name:");
+				String productName1 = scStr.nextLine();
+				if(productDaoObj.deleteProducts(productName1))
+					System.out.println("Deletion successful");
+				else
+					System.out.println("unsuccessfull Deletion");
 			}
 		}
 	}

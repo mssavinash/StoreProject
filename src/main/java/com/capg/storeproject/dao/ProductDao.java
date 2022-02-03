@@ -156,5 +156,22 @@ public class ProductDao {
 		}
 		return null;
 	}
+	
+	public boolean deleteProducts(String productName)
+	{
+		String sqlQuery = "delete from storeproject.products where productName = ?";
+		try {
+			ps = con.prepareStatement(sqlQuery);
+			ps.setString(1,productName);
+		
+			int i=ps.executeUpdate();
+			if(i==1)
+				return true;
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
 
 }

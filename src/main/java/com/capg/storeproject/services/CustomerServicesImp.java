@@ -8,9 +8,10 @@ import com.capg.storeproject.dao.ProductDao;
 
 public class CustomerServicesImp implements CustomerServices{
 	
-	List<Products> ListOfProducts = new ArrayList<Products>();
+	static List<Products> ListOfProducts = new ArrayList<Products>();
 
 	public void printListOfProducts() {
+		
 		System.out.println(ListOfProducts);
 /*		for (Products products : ListOfProducts) {
 			System.out.println(products.getProductName() + products.getProductPrice());	
@@ -30,10 +31,9 @@ public class CustomerServicesImp implements CustomerServices{
 	}
 	
 	public int checkout() {
-		Products productobj = new Products();
 		int sum = 0;
 		for (Products products : ListOfProducts) {
-			sum += productobj.getProductPrice();
+			sum += products.getProductPrice();
 		}
 		return sum;
 	}

@@ -98,7 +98,8 @@ public class ProductDao {
 	public Products getProductById(int productId1)
 	{
 		String sqlQuery = "select * from storeproject.products where productId = ?";
-		
+	//	List<Products> productsListInCart = new ArrayList<Products>();
+
 		try{
 			ps = con.prepareStatement(sqlQuery);
 			ps.setInt(1, productId1);
@@ -115,6 +116,37 @@ public class ProductDao {
 				Products p = new Products(productName,productId,productPrice,productCategory);
 				
 				return p;
+			}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	public List<Products> getProductByIdForSearch(int productId1)
+	{
+		String sqlQuery = "select * from storeproject.products where productId = ?";
+		List<Products> productsListForSearching = new ArrayList<Products>();
+
+		try{
+			ps = con.prepareStatement(sqlQuery);
+			ps.setInt(1, productId1);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				String productName = rs.getString("productName");
+				int productId = rs.getInt("productId");
+				float productPrice = rs.getFloat(("productPrice"));
+				String productCategory = rs.getString("productCategory");
+				
+				Products p = new Products(productName,productId,productPrice,productCategory);
+				productsListForSearching.add(p);
+				return productsListForSearching;
 			}
 			
 		}
